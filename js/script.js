@@ -1,14 +1,14 @@
 
-// reload page ??
-const btn = document.querySelector('.reset');
+// Reload page - New Game
+const btn = document.querySelector('.header__new-game-btn--reset');
 
 btn.addEventListener('click', function() {
     location.reload(true);
 });
 
-// add logo in header
-const header = document.querySelector('.header');
-const title = document.querySelector('.title');
+// Add Hero-logo in header
+const header = document.querySelector('.header__title');
+const headerTitle = document.querySelector('.header__title__h1');
 
 let hero = {
     blackpanther: './assets/images/Black_Panther.svg',
@@ -33,23 +33,17 @@ let bigHero = {
 };
 
 // Select all cards
-const cards = document.querySelectorAll('.memory-card');
+const cards = document.querySelectorAll('.game-field__card');
 
 let hasFlippedCard = false; 
 let lockOtherCards = false;
 let firstCard, secondCard;
 
-// Flip card
-/* const flipCard = event => {
-//Get the parent element of element that triggered a specific event(click):
-    let target = event.target.parentElement;
-}; */
-
 function flipCard() {
     if (this === firstCard) return; // prevent the click on same card
     if (lockOtherCards) return; // prevent opening other cards besides two
 
-    this.classList.add('flip');
+    this.classList.add('js-is-flipped');
 
     if (hasFlippedCard == false) {
         hasFlippedCard = true;
@@ -68,7 +62,6 @@ function checkForMatch() {
     if (firstCard.dataset.avenger === secondCard.dataset.avenger) {
         addLogo();
         disableCards();
-         // разное время?
         return;
     }
     unflipCards();
@@ -79,7 +72,6 @@ function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
     resetTwoCards();
-    
 }
 
 // Unflip cards
@@ -87,17 +79,15 @@ const unflipCards = () => {
     lockOtherCards = true;
 
     setTimeout(() => {
-        firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
+        firstCard.classList.remove('js-is-flipped');
+        secondCard.classList.remove('js-is-flipped');
         resetTwoCards();
     }, 1500);
 };
 
-
-
-// Add logo-badge in header
+// Add Hero-logo-badge in header
 const addLogo = () => {
-    title.remove();
+    headerTitle.remove();
     let img = document.createElement('img');
     
     for (let key in hero) {
@@ -106,22 +96,17 @@ const addLogo = () => {
             img.dataset.avenger = key;
         }
     }
-    img.classList.add('logo');
+    img.classList.add('js-header__hero-logo');
     header.appendChild(img);
     showLogo();
     showVictory();
 };
 
-
-
 //-- Show Big picture of hero in center
-
-
 function showLogo() {
-    let logos = document.querySelectorAll('.logo');
+    let logos = document.querySelectorAll('.js-header__hero-logo');
     let overlay = document.querySelector('.overlay');
-    let popHero = document.querySelector('.big-hero');
-    console.log(logos);
+    let popHero = document.querySelector('.overlay__hero-big-pic');
 
     logos.forEach(logo => {
         logo.addEventListener('click', function () {
@@ -150,45 +135,38 @@ function showLogo() {
 }
 
 // Show Victory screen
-let log = document.getElementsByClassName('logo');
+let log = document.getElementsByClassName('js-header__hero-logo');
 
 function showVictory() {
     let overlay = document.querySelector('.overlay');
-    let bigHero = document.querySelector('.big-hero');
-    let victory = document.querySelector('.victory');
-    let victoryCard = document.querySelector('.victory-card');
+    let bigHero = document.querySelector('.overlay__hero-big-pic');
+    let victory = document.querySelector('.overlay__victory');
 
     if (log.length === 8) {
 
         setTimeout(() => {
             bigHero.style.display = 'none';
-            /* overlay.style.backgroundImage = 'url(./assets/images/Avengers.svg)'; */
-            /* overlay.style.zIndex = 6; */
-            /* overlay.classList.add('fade');  */
             overlay.style.display = 'block';
             victory.style.display = 'block';
-            victoryCard.style.display = 'block';
         }, 1000);
 
         setTimeout(() => {
             bigHero.style.display = 'block';
             overlay.style.display = 'none';
-            /* overlay.style.backgroundImage = 'none'; */
             victory.style.display = 'none'; 
-            victoryCard.style.display = 'none';
         }, 4500);
         
     }
     return;
 }
 
-// Reseting to null first and second cards
+// Reset to null first and second cards
 const resetTwoCards = () => {
     [firstCard, secondCard] = [null, null];
     [hasFlippedCard, lockOtherCards] = [false, false];
 };
 
-// for each card
+// For each card
 cards.forEach(card => {
     // Add event listener to every card
     card.addEventListener('click', flipCard);

@@ -6,99 +6,96 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="./css/style.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <title>Avengers Memo Game</title>
+        <title>Avengers Memory Game</title>
     </head>
     <body>
-        <header>
-            <div class="header">
-                <h1 class="title">Avengers Assemble!</h1>
+        <header class="header">
+            <div class="header__title">
+                <h1 class="header__title__h1">Avengers Assemble!</h1>
             </div>
-            <div class="btn">
-                <button class="reset">New Game</button>
+            <div class="header__new-game-btn">
+                <button class="header__new-game-btn--reset">New Game</button>
             </div>
         </header>
-        <div class="wrapper">
-            
-            <section class="memory-game">
+        <main>
+            <section class="game-field">
                 
-                <div class="memory-card" data-avenger="blackpanther">
-                    <img class="face-card" src="./assets/images/blackpanther.webp" alt="Black Panther">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="blackpanther">
+                    <img class="game-field__card--face" src="./assets/images/blackpanther.webp" alt="Black Panther">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="blackpanther">
-                    <img class="face-card" src="./assets/images/blackpanther.webp" alt="Black Panther">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="blackpanther">
+                    <img class="game-field__card--face" src="./assets/images/blackpanther.webp" alt="Black Panther">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="ironman">
-                    <img class="face-card" src="./assets/images/ironman.webp" alt="Iron Man">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="ironman">
+                    <img class="game-field__card--face" src="./assets/images/ironman.webp" alt="Iron Man">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="ironman">
-                    <img class="face-card" src="./assets/images/ironman.webp" alt="Iron Man">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="ironman">
+                    <img class="game-field__card--face" src="./assets/images/ironman.webp" alt="Iron Man">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="blackwidow">
-                    <img class="face-card" src="./assets/images/blackwidow.webp" alt="Black Widow">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="blackwidow">
+                    <img class="game-field__card--face" src="./assets/images/blackwidow.webp" alt="Black Widow">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="blackwidow">
-                    <img class="face-card" src="./assets/images/blackwidow.webp" alt="Black Widow">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="blackwidow">
+                    <img class="game-field__card--face" src="./assets/images/blackwidow.webp" alt="Black Widow">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="captainamerica">
-                    <img class="face-card" src="./assets/images/captainamerica.webp" alt="Captain America">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="captainamerica">
+                    <img class="game-field__card--face" src="./assets/images/captainamerica.webp" alt="Captain America">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="captainamerica">
-                    <img class="face-card" src="./assets/images/captainamerica.webp" alt="Captain America">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="captainamerica">
+                    <img class="game-field__card--face" src="./assets/images/captainamerica.webp" alt="Captain America">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="hawkeye">
-                    <img class="face-card" src="./assets/images/hawkeye.webp" alt="Hawkeye">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="hawkeye">
+                    <img class="game-field__card--face" src="./assets/images/hawkeye.webp" alt="Hawkeye">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="hawkeye">
-                    <img class="face-card" src="./assets/images/hawkeye.webp" alt="Hawkeye">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="hawkeye">
+                    <img class="game-field__card--face" src="./assets/images/hawkeye.webp" alt="Hawkeye">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="hulk">
-                    <img class="face-card" src="./assets/images/hulk.webp" alt="Hulk">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="hulk">
+                    <img class="game-field__card--face" src="./assets/images/hulk.webp" alt="Hulk">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="hulk">
-                    <img class="face-card" src="./assets/images/hulk.webp" alt="Hulk">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="hulk">
+                    <img class="game-field__card--face" src="./assets/images/hulk.webp" alt="Hulk">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="spiderman">
-                    <img class="face-card" src="./assets/images/spiderman.webp" alt="Spider-Man">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="spiderman">
+                    <img class="game-field__card--face" src="./assets/images/spiderman.webp" alt="Spider-Man">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="spiderman">
-                    <img class="face-card" src="./assets/images/spiderman.webp" alt="Spider-Man">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="spiderman">
+                    <img class="game-field__card--face" src="./assets/images/spiderman.webp" alt="Spider-Man">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="thor">
-                    <img class="face-card" src="./assets/images/thor.webp" alt="Thor">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="thor">
+                    <img class="game-field__card--face" src="./assets/images/thor.webp" alt="Thor">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
-                <div class="memory-card" data-avenger="thor">
-                    <img class="face-card" src="./assets/images/thor.webp" alt="Thor">
-                    <img class="back-card" src="./assets/images/bg_avengers.jpg" alt="Avengers">
+                <div class="game-field__card" data-avenger="thor">
+                    <img class="game-field__card--face" src="./assets/images/thor.webp" alt="Thor">
+                    <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg" alt="Avengers">
                 </div>
                 <div class="overlay">
-                    <h1 class="victory">Assembled! Well done!</h1>
-                    <img  class="victory-card" src="./assets/images/Avengers.svg" alt="Avengers">
-                    <div class="big-hero fade">
-                        
+                    <div class="overlay__hero-big-pic is-faded">
                     </div>
-                    
+                    <div class="overlay__victory">
+                        <h1 class="js-overlay__victory__title">Assembled! Well done!</h1>
+                        <img  class="js-overlay__victory__logo" src="./assets/images/Avengers.svg" alt="Avengers">
+                    </div>
                 </div>
+                
             </section>
-            
-        </div>
-        
-
-        <footer>
+        </main>
+        <footer class="footer">
             <p>© Copyright Marvel</p>
         </footer>
         <script src="./js/script.js"></script>
