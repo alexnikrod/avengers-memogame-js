@@ -86,9 +86,15 @@ const unflipCards = () => {
 };
 
 // Add Hero-logo-badge in header
+let h1 = document.createElement('h1');
+let log = document.getElementsByClassName('js-header__hero-logo');
+
 const addLogo = () => {
     headerTitle.remove();
     let img = document.createElement('img');
+    
+    
+    
     
     for (let key in hero) {
         if (key === firstCard.dataset.avenger) {
@@ -98,6 +104,12 @@ const addLogo = () => {
     }
     img.classList.add('js-header__hero-logo');
     header.appendChild(img);
+    console.log(log.length);
+    if (log.length <= 1) {
+            h1.innerHTML = 'click the badge';
+            h1.classList.add('js-header__title__click-badge');
+            header.appendChild(h1);
+        }
     showLogo();
     showVictory();
 };
@@ -111,7 +123,7 @@ function showLogo() {
     logos.forEach(logo => {
         logo.addEventListener('click', function () {
             overlay.style.display = 'block';
-    
+            h1.remove();
             for (let key in bigHero) {
                 
                 if (key === logo.dataset.avenger) {
@@ -135,7 +147,7 @@ function showLogo() {
 }
 
 // Show Victory screen
-let log = document.getElementsByClassName('js-header__hero-logo');
+
 
 function showVictory() {
     let overlay = document.querySelector('.overlay');
