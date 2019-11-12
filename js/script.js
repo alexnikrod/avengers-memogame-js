@@ -87,14 +87,11 @@ const unflipCards = () => {
 
 // Add Hero-logo-badge in header
 let h1 = document.createElement('h1');
-let log = document.getElementsByClassName('js-header__hero-logo');
+let herosLogo = document.getElementsByClassName('js-header__hero-logo');
 
 const addLogo = () => {
     headerTitle.remove();
     let img = document.createElement('img');
-    
-    
-    
     
     for (let key in hero) {
         if (key === firstCard.dataset.avenger) {
@@ -104,22 +101,29 @@ const addLogo = () => {
     }
     img.classList.add('js-header__hero-logo');
     header.appendChild(img);
-    console.log(log.length);
-    if (log.length <= 1) {
+    
+    if (herosLogo.length <= 1) {
             h1.innerHTML = 'click the badge';
-            h1.classList.add('js-header__title__click-badge');
+            h1.classList.add('js-header__title--sign');
             header.appendChild(h1);
         }
+    if (herosLogo.length > 1) {
+        h1.remove();
+    }
+    
     showLogo();
     showVictory();
 };
 
+let overlay = document.querySelector('.overlay');
 //-- Show Big picture of hero in center
+
+
 function showLogo() {
     let logos = document.querySelectorAll('.js-header__hero-logo');
-    let overlay = document.querySelector('.overlay');
+    /* let overlay = document.querySelector('.overlay'); */
     let popHero = document.querySelector('.overlay__hero-big-pic');
-
+    
     logos.forEach(logo => {
         logo.addEventListener('click', function () {
             overlay.style.display = 'block';
@@ -128,45 +132,85 @@ function showLogo() {
                 
                 if (key === logo.dataset.avenger) {
                     popHero.style.backgroundImage = bigHero[key];
-                    
-                    setTimeout(() => {
+                    close();
+                    /* setTimeout(() => {
                         overlay.style.display = 'none';
-                    }, 3000);
+                    }, 3000); */
                     /* setTimeout(() => {
                         document.addEventListener('click', function() {
                             overlay.style.display = 'none';
-                            document.removeEventListener('click', function() {
-                                overlay.style.display = 'none'; });
+                            
                         });
                     
-                    }, 2000); */
+                    }, 1000); */
                 }
             }
         });
     });
 }
 
+// Close overlay
+const close = () => {
+    const hideOverlay = () => {
+        if (!event.target.closest('.js-header__hero-logo')) {
+            overlay.style.display = 'none';
+            removeClickListener();
+        }
+    };
+
+    const removeClickListener = () => {
+        this.removeEventListener('click', hideOverlay);
+    };
+
+    setTimeout(() => {
+        this.addEventListener('click', hideOverlay);
+    }, 1000);
+};
+
 // Show Victory screen
 
 
 function showVictory() {
-    let overlay = document.querySelector('.overlay');
-    let bigHero = document.querySelector('.overlay__hero-big-pic');
+    /* let overlay = document.querySelector('.overlay'); */
+    /* let bigHero = document.querySelector('.overlay__hero-big-pic'); */
     let victory = document.querySelector('.overlay__victory');
+    let victoryTitle = document.querySelector('.js-overlay__victory--title');
 
-    if (log.length === 8) {
-
+    if (herosLogo.length === 8) {
+        
         setTimeout(() => {
-            bigHero.style.display = 'none';
+            /* while (herosLogo.length > 0) {
+                herosLogo[0].remove();
+                
+            }   */
+            /* for (let logos of herosLogo) {
+                logos.style.display = 'none';    
+            } */
+            
+
+            h1.innerHTML = 'Assembled! Well done!';
+            /* h1.classList.add('js-header__title--sign');
+            header.appendChild(h1); */
+            victoryTitle.appendChild(h1);
+
+            /* bigHero.style.display = 'none'; */
             overlay.style.display = 'block';
             victory.style.display = 'block';
-        }, 1000);
+            /* close(); */
+        }, 700);
 
-        setTimeout(() => {
+
+
+        /* setTimeout(() => {
+            h1.remove();
+            for (let logos of herosLogo) {
+                logos.style.display = 'flex';    
+            }
+            
             bigHero.style.display = 'block';
             overlay.style.display = 'none';
             victory.style.display = 'none'; 
-        }, 4500);
+        }, 4500); */
         
     }
     return;

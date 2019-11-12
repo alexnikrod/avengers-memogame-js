@@ -71,11 +71,17 @@ h1 {
 	text-decoration: none;
 	text-transform: uppercase;
 	background-color: rgba(231, 76, 60, 1);
-	border-style: none;
+	border: 0;
 	border-radius: 10px;
+	cursor: pointer;
+	outline: inherit;
+	-webkit-transform: scale(1);
+			-ms-transform: scale(1);
+					transform: scale(1);
 	-webkit-transition: all 0.4s ease 0s;
 				-o-transition: all 0.4s ease 0s;
 						transition: all 0.4s ease 0s;
+	
 }
 
 .header__new-game-btn--reset:hover {
@@ -85,6 +91,15 @@ h1 {
 	-webkit-transition: all 0.4s ease 0s;
 				-o-transition: all 0.4s ease 0s;
 						transition: all 0.4s ease 0s;
+}
+
+.header__new-game-btn--reset:active {
+	-webkit-transform: scale(.9);
+			-ms-transform: scale(.9);
+					transform: scale(.9);
+	-webkit-transition: transform .3s;
+				-o-transition: transform .3s;
+						transition: transform .3s;
 }
 
 /*--styles created and modified in JS--*/
@@ -151,14 +166,16 @@ h1 {
 			        transform: rotateY(-360deg);
 	}
 }
-/*--sign appears--*/
-.js-header__title__click-badge {
+/*--sign shows up--*/
+.js-header__title--sign {
 	position: relative;
 	left: 0;
 	top: 0;
 	margin-left: 5px;
 	animation: clickBadge 1.2s;
 	-webkit-animation: clickBadge 1.2s;
+	/*animation: name duration timing-function delay iteration-count direction fill-mode;
+	*/:;
 }
 
 @-webkit-keyframes clickBadge {
@@ -170,8 +187,8 @@ h1 {
 	}
 	100% {
 		left: 0px;
-		-webkit-animation-timing-function: ease-out;
-		        animation-timing-function: ease-out;
+		-webkit-animation-timing-function: ease-in;
+		        animation-timing-function: ease-in;
 	}
 }
 
@@ -184,8 +201,8 @@ h1 {
 	}
 	100% {
 		left: 0px;
-		-webkit-animation-timing-function: ease-out;
-		        animation-timing-function: ease-out;
+		-webkit-animation-timing-function:  ease-in;
+		        animation-timing-function: ease-in;
 	}
 }
 
@@ -327,7 +344,7 @@ h1 {
 	display: none;
 }
 /*--created in JS--*/
-.js-overlay__victory__title {
+.js-overlay__victory--title {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -372,7 +389,7 @@ h1 {
 	  -moz-transform: scale(1);
 	  -ms-transform: scale(1);
 	  -o-transform: scale(1);
-}
+	}
 }
 
 
