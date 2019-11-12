@@ -84,7 +84,7 @@ const unflipCards = () => {
         resetTwoCards();
     }, 1500);
 };
-
+//-----features----//
 // Add Hero-logo-badge in header
 let h1 = document.createElement('h1');
 let herosLogo = document.getElementsByClassName('js-header__hero-logo');
@@ -114,11 +114,13 @@ const addLogo = () => {
     showLogo();
     showVictory();
 };
-
+//-- Overlays --//
 let overlay = document.querySelector('.overlay');
-//-- Show Big picture of hero in center
+let bigHeroPic = document.querySelector('.overlay__hero-big-pic');
+let victory = document.querySelector('.overlay__victory');
+let victoryTitle = document.querySelector('.js-overlay__victory--title');
 
-
+//-- Show big picture of hero in center
 function showLogo() {
     let logos = document.querySelectorAll('.js-header__hero-logo');
     
@@ -127,70 +129,55 @@ function showLogo() {
     logos.forEach(logo => {
         logo.addEventListener('click', function () {
             overlay.style.display = 'block';
+            
             h1.remove();
             for (let key in bigHero) {
                 
                 if (key === logo.dataset.avenger) {
                     popHero.style.backgroundImage = bigHero[key];
                     close();
-                    
                 }
             }
         });
     });
 }
 
-// Close overlay
+// Show Victory screen
+function showVictory() {
+    if (herosLogo.length === 8) {
+        
+        setTimeout(() => {
+            victoryTitle.innerHTML = 'Assembled! Well done!';
+            bigHeroPic.style.display = 'none';
+            overlay.style.display = 'block';
+            victory.style.display = 'block';
+            close();
+        }, 700);
+    }
+    return;
+}
+
+// Close Overlay
 const close = () => {
     const hideOverlay = () => {
         if (!event.target.closest('.js-header__hero-logo')) {
             overlay.style.display = 'none';
+            bigHeroPic.style.display = 'block';
+            victory.style.display = 'none';
             removeClickListener();
         }
     };
 
     const removeClickListener = () => {
         this.removeEventListener('click', hideOverlay);
-        console.log(this)
     };
 
     setTimeout(() => {
         this.addEventListener('click', hideOverlay);
-    }, 1000);
+    }, 700);
 };
 
-// Show Victory screen
-
-
-function showVictory() {
-    
-    let bigHero = document.querySelector('.overlay__hero-big-pic');
-    let victory = document.querySelector('.overlay__victory');
-    let victoryTitle = document.querySelector('.js-overlay__victory--title');
-
-    if (herosLogo.length === 8) {
-        
-        setTimeout(() => {
-            
-
-            victoryTitle.innerHTML = 'Assembled! Well done!';
-            
-            
-
-            bigHero.style.display = 'none';
-            overlay.style.display = 'block';
-            victory.style.display = 'block';
-            close();
-        }, 700);
-
-
-
-       
-        
-    }
-    return;
-}
-
+//----game logic---//
 // Reset to null first and second cards
 const resetTwoCards = () => {
     [firstCard, secondCard] = [null, null];
