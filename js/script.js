@@ -121,7 +121,7 @@ let overlay = document.querySelector('.overlay');
 
 function showLogo() {
     let logos = document.querySelectorAll('.js-header__hero-logo');
-    /* let overlay = document.querySelector('.overlay'); */
+    
     let popHero = document.querySelector('.overlay__hero-big-pic');
     
     logos.forEach(logo => {
@@ -133,16 +133,7 @@ function showLogo() {
                 if (key === logo.dataset.avenger) {
                     popHero.style.backgroundImage = bigHero[key];
                     close();
-                    /* setTimeout(() => {
-                        overlay.style.display = 'none';
-                    }, 3000); */
-                    /* setTimeout(() => {
-                        document.addEventListener('click', function() {
-                            overlay.style.display = 'none';
-                            
-                        });
                     
-                    }, 1000); */
                 }
             }
         });
@@ -160,6 +151,7 @@ const close = () => {
 
     const removeClickListener = () => {
         this.removeEventListener('click', hideOverlay);
+        console.log(this)
     };
 
     setTimeout(() => {
@@ -171,46 +163,29 @@ const close = () => {
 
 
 function showVictory() {
-    /* let overlay = document.querySelector('.overlay'); */
-    /* let bigHero = document.querySelector('.overlay__hero-big-pic'); */
+    
+    let bigHero = document.querySelector('.overlay__hero-big-pic');
     let victory = document.querySelector('.overlay__victory');
     let victoryTitle = document.querySelector('.js-overlay__victory--title');
 
     if (herosLogo.length === 8) {
         
         setTimeout(() => {
-            /* while (herosLogo.length > 0) {
-                herosLogo[0].remove();
-                
-            }   */
-            /* for (let logos of herosLogo) {
-                logos.style.display = 'none';    
-            } */
             
 
-            h1.innerHTML = 'Assembled! Well done!';
-            /* h1.classList.add('js-header__title--sign');
-            header.appendChild(h1); */
-            victoryTitle.appendChild(h1);
+            victoryTitle.innerHTML = 'Assembled! Well done!';
+            
+            
 
-            /* bigHero.style.display = 'none'; */
+            bigHero.style.display = 'none';
             overlay.style.display = 'block';
             victory.style.display = 'block';
-            /* close(); */
+            close();
         }, 700);
 
 
 
-        /* setTimeout(() => {
-            h1.remove();
-            for (let logos of herosLogo) {
-                logos.style.display = 'flex';    
-            }
-            
-            bigHero.style.display = 'block';
-            overlay.style.display = 'none';
-            victory.style.display = 'none'; 
-        }, 4500); */
+       
         
     }
     return;

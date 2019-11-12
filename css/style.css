@@ -17,15 +17,14 @@ body {
 	        flex-direction: column;
 	height: 100vh;
 	font-family: 'Lato', sans-serif;
+	color:  white;
+	font-style: italic;
+	text-transform: uppercase;
 	background-image: url('../assets/images/tinted-hexagon.webp');
 	background-position: center;
 }
 
-h1 {
-	color:  white;
-	font-style: italic;
-	text-transform: uppercase;
-}
+
 
 /*--Header--*/
 
@@ -174,8 +173,7 @@ h1 {
 	margin-left: 5px;
 	animation: clickBadge 1.2s;
 	-webkit-animation: clickBadge 1.2s;
-	/*animation: name duration timing-function delay iteration-count direction fill-mode;
-	*/:;
+	
 }
 
 @-webkit-keyframes clickBadge {
@@ -212,6 +210,7 @@ h1 {
 	margin-top: 10px;
 	color: grey;
 	text-align: center;
+	
 	font-size: .7rem;
 }
 
