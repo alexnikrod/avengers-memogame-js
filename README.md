@@ -5,7 +5,7 @@
 Preview: 
 ![alt text][gif]
 
-[gif]: https://ibb.co/3SQQMCg "Preview"
+[gif]: https://i.ibb.co/NWbbmyc/ezgif-com-optimize-1.gif "Preview"
 
 * HTML
 * CSS
