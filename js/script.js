@@ -1,8 +1,8 @@
 
 // Reload page - New Game
-const btn = document.querySelector('.header__new-game-btn--reset');
+const btn = document.querySelector('.header__btn--reset');
 
-btn.addEventListener('click', function() {
+btn.addEventListener('click', () => {
     location.reload(true);
 });
 
@@ -31,8 +31,8 @@ let bigHero = {
     spiderman: 'url(./assets/images/big_spiderman.jpg)',
     thor: 'url(./assets/images/big_thor.jpg)',
 };
+// --- Game's Logic --- 
 
-// Select all cards
 const cards = document.querySelectorAll('.game-field__card');
 
 let hasFlippedCard = false; 
@@ -41,38 +41,38 @@ let firstCard, secondCard;
 
 function flipCard() {
     if (this === firstCard) return; // prevent the click on same card
-    if (lockOtherCards) return; // prevent opening other cards besides two
+    if (lockOtherCards) return; // prevent opening other cards more then two
 
     this.classList.add('js-is-flipped');
 
-    if (hasFlippedCard == false) {
+    if (!hasFlippedCard) {
+        // First click
         hasFlippedCard = true;
-        
         firstCard = this;
         return;
     } 
-
+    // Second click
     secondCard = this;
-    
+    // Check for match
     checkForMatch();
 }
 
-// Check Match
-function checkForMatch() {
+// Check for match
+const checkForMatch = () => {
     if (firstCard.dataset.avenger === secondCard.dataset.avenger) {
-        addLogo();
+        addLogo(); // add hero's logo in header
         disableCards();
         return;
     }
     unflipCards();
-}
+};
 
-// Disable Cards if matched
-function disableCards() {
+// Disable two cards if matched
+const disableCards = () => {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
     resetTwoCards();
-}
+};
 
 // Unflip cards
 const unflipCards = () => {
@@ -84,10 +84,25 @@ const unflipCards = () => {
         resetTwoCards();
     }, 1500);
 };
-//-----features----//
-// Add Hero-logo-badge in header
+
+// Reset first and second card 
+const resetTwoCards = () => {
+    [firstCard, secondCard] = [null, null];
+    [hasFlippedCard, lockOtherCards] = [false, false];
+};
+
+cards.forEach(card => {
+    // Add event listener to every card
+    card.addEventListener('click', flipCard);
+    // Shuffle cards
+    const randomCardIndex = Math.floor(Math.random() * cards.length);
+    card.style.order = randomCardIndex;
+});
+
+//-----Features----//
+// Add hero's logo in header if match
 let h1 = document.createElement('h1');
-let herosLogo = document.getElementsByClassName('js-header__hero-logo');
+let herosLogo = document.getElementsByClassName('js-hero-logo');
 
 const addLogo = () => {
     headerTitle.remove();
@@ -99,7 +114,7 @@ const addLogo = () => {
             img.dataset.avenger = key;
         }
     }
-    img.classList.add('js-header__hero-logo');
+    img.classList.add('js-hero-logo');
     header.appendChild(img);
     
     if (herosLogo.length <= 1) {
@@ -116,15 +131,15 @@ const addLogo = () => {
 };
 //-- Overlays --//
 let overlay = document.querySelector('.overlay');
-let bigHeroPic = document.querySelector('.overlay__hero-big-pic');
+let bigHeroPic = document.querySelector('.overlay__hero-big');
 let victory = document.querySelector('.overlay__victory');
-let victoryTitle = document.querySelector('.js-overlay__victory--title');
+let victoryTitle = document.querySelector('.js-victory-title');
 
 //-- Show big picture of hero in center
 function showLogo() {
-    let logos = document.querySelectorAll('.js-header__hero-logo');
+    let logos = document.querySelectorAll('.js-hero-logo');
     
-    let popHero = document.querySelector('.overlay__hero-big-pic');
+    let popHero = document.querySelector('.overlay__hero-big');
     
     logos.forEach(logo => {
         logo.addEventListener('click', function () {
@@ -160,7 +175,7 @@ function showVictory() {
 // Close Overlay
 const close = () => {
     const hideOverlay = () => {
-        if (!event.target.closest('.js-header__hero-logo')) {
+        if (!event.target.closest('.js-hero-logo')) {
             overlay.style.display = 'none';
             bigHeroPic.style.display = 'block';
             victory.style.display = 'none';
@@ -177,20 +192,8 @@ const close = () => {
     }, 700);
 };
 
-//----game logic---//
-// Reset to null first and second cards
-const resetTwoCards = () => {
-    [firstCard, secondCard] = [null, null];
-    [hasFlippedCard, lockOtherCards] = [false, false];
-};
 
-// For each card
-cards.forEach(card => {
-    // Add event listener to every card
-    card.addEventListener('click', flipCard);
-    // shuffle cards
-    card.style.order = Math.floor(Math.random() * 16);
-});
+
 
 
 
