@@ -1,7 +1,24 @@
+window.onload = () => {
+    layCards();
+    addEventToCards();
+};
+
+// Lay new cards
+const layCards = () => {
+    for (let key in hero) {
+        let gameField = document.querySelector('.game-field');
+        for (let i = 0; i < 2; i++ ) {
+            gameField.insertAdjacentHTML('afterbegin', `
+            <div class="game-field__card" data-avenger="${key}">
+                <img class="game-field__card--face" src="${hero[key][2]}">
+                <img class="game-field__card--back" src="./assets/images/bg_avengers.jpg">
+            </div>`);
+        }
+    }
+};
+
 // --- Game's Logic --- 
-
-const cards = document.querySelectorAll('.game-field__card');
-
+let cards = document.getElementsByClassName('game-field__card');
 let hasFlippedCard = false; 
 let lockOtherCards = false;
 let firstCard, secondCard;
@@ -58,36 +75,14 @@ const resetTwoCards = () => {
     [hasFlippedCard, lockOtherCards] = [false, false];
 };
 
-cards.forEach(card => {
-    // Add event listener to every card
-    card.addEventListener('click', flipCard);
-    // Shuffle cards
-    const randomCardIndex = Math.floor(Math.random() * cards.length);
-    card.style.order = randomCardIndex;
-});
-
-// ---Dynamic--- 
-
-let hero = {
-    blackpanther: './assets/images/Black_Panther.svg',
-    blackwidow: './assets/images/Black_Widow.svg',
-    captainamerica: './assets/images/Captain_America.svg',
-    hawkeye: './assets/images/Hawkeye.svg',                                                                                 
-    hulk: './assets/images/Hulk.svg',
-    ironman: './assets/images/Iron_Man.svg',
-    spiderman: './assets/images/Spider-Man.svg',
-    thor: './assets/images/Thor.svg',
-};
-
-let bigHero = {
-    blackpanther: 'url(./assets/images/big_blpanther.jpg)',
-    blackwidow: 'url(./assets/images/big_blwidow.jpg)',
-    captainamerica: 'url(./assets/images/big_cap.jpg)',
-    hawkeye: 'url(./assets/images/big_hawkeye.jpg)',
-    hulk: 'url(./assets/images/big_hulk.jpg)',
-    ironman: 'url(./assets/images/big_ironman.jpg)',
-    spiderman: 'url(./assets/images/big_spiderman.jpg)',
-    thor: 'url(./assets/images/big_thor.jpg)',
+// Add event listener to cards and shuffle 
+const addEventToCards = () => {
+    [...cards].forEach(card => {
+        card.addEventListener('click', flipCard);
+        // Shuffle cards
+        const randomCardIndex = Math.floor(Math.random() * cards.length);
+        card.style.order = randomCardIndex; 
+    });
 };
 
 //---Features---//
@@ -109,7 +104,7 @@ const addLogo = () => {
     
     for (let key in hero) {
         if (key === firstCard.dataset.avenger) {
-            img.src = hero[key];
+            img.src = hero[key][0];
             img.dataset.avenger = key;
         }
     }
@@ -140,12 +135,12 @@ let victoryTitle = document.querySelector('.js-victory-title');
 const showBigHero = () => {
     Array.from(herosLogo).forEach(logo => {
         logo.addEventListener('click', () => {
-            overlay.style.display = 'block';
+            show(overlay);
             headerTitle.remove(); // Remove info text
             // Show pic
-            for (let key in bigHero) {
+            for (let key in hero) {
                 if (key === logo.dataset.avenger) {
-                    bigHeroPic.style.backgroundImage = bigHero[key];
+                    bigHeroPic.style.backgroundImage = hero[key][1];
                     close();
                 }
             }
@@ -157,12 +152,14 @@ const showBigHero = () => {
 const showVictory = () => {
     if (herosLogo.length === 8) {
         setTimeout(() => {
-            overlay.style.display = 'block';
-            bigHeroPic.style.display = 'none';
-            victory.style.display = 'block';
+            show(overlay);
+            hide(bigHeroPic);
+            show(victory);
             victoryTitle.innerHTML = 'Assembled! Well done!';
+            victory.insertAdjacentHTML('afterbegin', `
+                <img  class="js-victory-logo" src="./assets/images/Avengers.svg">`);
             close();
-        }, 700);
+        }, 500);
     }
     return;
 };
@@ -171,9 +168,9 @@ const showVictory = () => {
 const close = () => {
     const hideOverlay = () => {
         if (!event.target.closest('.js-hero-logo')) {
-            overlay.style.display = 'none';
-            bigHeroPic.style.display = 'block';
-            victory.style.display = 'none';
+            hide(overlay);
+            show(bigHeroPic);
+            hide(victory);
             removeClickListener();
         }
     };
@@ -184,11 +181,58 @@ const close = () => {
 
     setTimeout(() => {
         this.addEventListener('click', hideOverlay);
-    }, 700);
+    }, 500);
 };
 
+function show($el) {
+    $el.style.display = 'block';
+}
 
+function hide($el) {
+    $el.style.display = 'none';
+}
 
-
-
+// ---Images--- 
+let hero = {
+    blackpanther: [
+        './assets/images/Black_Panther.svg',
+        'url(./assets/images/big_blpanther.jpg)',
+        './assets/images/blackpanther.webp'
+    ],
+    blackwidow: [
+        './assets/images/Black_Widow.svg',
+        'url(./assets/images/big_blwidow.jpg)',
+        './assets/images/blackwidow.webp'
+    ],
+    captainamerica: [
+        './assets/images/Captain_America.svg',
+        'url(./assets/images/big_cap.jpg)',
+        './assets/images/captainamerica.webp'
+    ],
+    hawkeye: [
+        './assets/images/Hawkeye.svg',
+        'url(./assets/images/big_hawkeye.jpg)',
+        './assets/images/hawkeye.webp'
+    ],                                                                                 
+    hulk: [
+        './assets/images/Hulk.svg',
+        'url(./assets/images/big_hulk.jpg)',
+        './assets/images/hulk.webp'
+    ],
+    ironman: [
+        './assets/images/Iron_Man.svg',
+        'url(./assets/images/big_ironman.jpg)',
+        './assets/images/ironman.webp'
+    ],
+    spiderman: [
+        './assets/images/Spider-Man.svg',
+        'url(./assets/images/big_spiderman.jpg)',
+        './assets/images/spiderman.webp'
+    ],
+    thor: [
+        './assets/images/Thor.svg',
+        'url(./assets/images/big_thor.jpg)',
+        './assets/images/thor.webp'
+    ],
+};
 
