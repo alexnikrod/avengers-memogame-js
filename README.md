@@ -1,6 +1,6 @@
 # This is a Memory Game with Avengers
 
-# [DEMO](https://alexnikrod.github.io/avengers_memogame/ "Avengers Assemble!")
+# [DEMO](https://alexnikrod.github.io/avengers-memogame-js/ "Avengers Assemble!")
 
 * HTML
 * CSS
